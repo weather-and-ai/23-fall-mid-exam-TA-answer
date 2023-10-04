@@ -9,6 +9,7 @@ from EEJudge.Login import Bot
 import aiohttp
 import asyncio
 from dotenv import dotenv_values
+import os
 
 config = dotenv_values(".env")
 
@@ -18,7 +19,7 @@ async def main():
         bot = Bot(
             session=session,
             account=config["account"],
-            password=config["password"]
+            password=config["password"],
         )
         await bot.login()
 
