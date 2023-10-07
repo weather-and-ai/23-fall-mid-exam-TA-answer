@@ -5,23 +5,10 @@ Author: @1chooo (Hugo ChunHo Lin)
 Version: v0.0.1
 '''
 
-from EEJudge.Login import Bot
-import aiohttp
-import asyncio
-from dotenv import dotenv_values
-import os
-
-config = dotenv_values(".env")
+from EEJudge.GUI.Launch import build_eejudge
 
 async def main():
-    async with aiohttp.ClientSession() as session:
-
-        bot = Bot(
-            session=session,
-            account=config["account"],
-            password=config["password"],
-        )
-        await bot.login()
+    build_eejudge()
 
 if __name__ == '__main__':
-    asyncio.run(main())
+    main()
