@@ -5,9 +5,30 @@ Author: @1chooo (Hugo ChunHo Lin)
 Version: v0.0.1
 '''
 
+import os
+import subprocess
 import gradio as gr
 from typing import Any
 from EEJudge.GUI import Information as information
+
+def get_code(txt):
+    with open("tmp.py", "w") as file:
+        file.write(txt)
+
+    try:
+        output = subprocess.check_output(
+            ["python", "tmp.py"], 
+            stderr=subprocess.STDOUT, 
+            universal_newlines=True,
+        )
+        print("Script output:")
+        print(output)
+        return output
+    except subprocess.CalledProcessError as e:
+        print("Error:", e.output)
+        return e.output
+    finally:
+        os.remove("tmp.py")
 
 def build_eejudge(
         *args: Any, 
@@ -27,6 +48,17 @@ def build_eejudge(
             heading = gr.Markdown(
                 "EE-Judge Test"
             )
+
+            txt = gr.Textbox(
+                label="Paste Your code here", 
+            )
+
+            txt_3 = gr.Textbox(
+                label="Your code results"
+            )
+
+            btn = gr.Button(value="Submit")
+            btn.click(get_code, inputs=[txt], outputs=[txt_3])
 
     demo.launch(
         # enable_queue=True,

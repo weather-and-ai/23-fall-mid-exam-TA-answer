@@ -7,7 +7,7 @@ Version: v0.0.1
 
 from EEJudge.GUI.Launch import build_eejudge
 
-async def main():
+def main():
     build_eejudge()
 
 if __name__ == '__main__':
