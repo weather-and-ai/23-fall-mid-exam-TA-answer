@@ -5,10 +5,15 @@ Author: @1chooo (Hugo ChunHo Lin)
 Version: v0.0.1
 '''
 
-from EEJudge.GUI.Launch import build_eejudge
+import uvicorn
 
-def main():
-    build_eejudge()
+def main() -> None:
+    uvicorn.run(
+        app="EEJudge.App.App:app",
+        host="127.0.0.1", 
+        port=5002,
+        reload=True,
+    )
 
 if __name__ == '__main__':
     main()

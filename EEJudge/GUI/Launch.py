@@ -87,11 +87,5 @@ def build_eejudge(
             selected_question_name,
             test_word
         )
-            
-    demo.launch(
-        # enable_queue=True,
-        # share=True, 
-        server_name="127.0.0.1", 
-        server_port=6006,
-        debug=True,
-    )
+
+    return demo
