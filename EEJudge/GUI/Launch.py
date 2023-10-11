@@ -10,25 +10,7 @@ from typing import Any
 from EEJudge.GUI import Information as information
 from EEJudge.Judge.Judge import get_code
 from EEJudge.ChatBot.Chat import respond
-
-def test(selected_question_name):
-    if selected_question_name == "Q1":
-
-        test_word = gr.Markdown(
-            """\
-            ### Q1
-            
-            print("Hello World")
-            """,  
-            visible=True,
-        )
-    elif selected_question_name == "Q2":
-        test_word = gr.Markdown(
-            "### Q2", 
-            visible=True,
-        )
-    
-    return test_word
+from EEJudge.Utils.Listener import background_listener
 
 def build_eejudge(
         *args: Any, 
@@ -72,7 +54,10 @@ def build_eejudge(
                         visible=True,
                     )
                 with gr.Column():
-                    chatbot = gr.Chatbot()
+                    chatbot = gr.Chatbot(
+                        label="EE Chat",
+                        show_label=True,
+                    )
                     msg = gr.Textbox()
                     clear = gr.ClearButton([msg, chatbot])
                     msg.submit(respond, [msg, chatbot], [msg, chatbot])
@@ -98,10 +83,9 @@ def build_eejudge(
                 "We will record the judge mechanism in the future..."
             )
 
-        selected_question_name.change(
-            fn=test,
-            inputs=selected_question_name,
-            outputs=test_word,
+        background_listener(
+            selected_question_name,
+            test_word
         )
             
     demo.launch(
