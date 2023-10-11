@@ -5,30 +5,30 @@ Author: @1chooo (Hugo ChunHo Lin)
 Version: v0.0.1
 '''
 
-import os
-import subprocess
 import gradio as gr
 from typing import Any
 from EEJudge.GUI import Information as information
+from EEJudge.Judge.Judge import get_code
+from EEJudge.ChatBot.Chat import respond
 
-def get_code(txt):
-    with open("tmp.py", "w") as file:
-        file.write(txt)
+def test(selected_question_name):
+    if selected_question_name == "Q1":
 
-    try:
-        output = subprocess.check_output(
-            ["python", "tmp.py"], 
-            stderr=subprocess.STDOUT, 
-            universal_newlines=True,
+        test_word = gr.Markdown(
+            """\
+            ### Q1
+            
+            print("Hello World")
+            """,  
+            visible=True,
         )
-        print("Script output:")
-        print(output)
-        return output
-    except subprocess.CalledProcessError as e:
-        print("Error:", e.output)
-        return e.output
-    finally:
-        os.remove("tmp.py")
+    elif selected_question_name == "Q2":
+        test_word = gr.Markdown(
+            "### Q2", 
+            visible=True,
+        )
+    
+    return test_word
 
 def build_eejudge(
         *args: Any, 
@@ -48,6 +48,34 @@ def build_eejudge(
             heading = gr.Markdown(
                 "EE-Judge Test"
             )
+            with gr.Row():
+                with gr.Column():
+                    gr.Markdown(
+                        "Question Descriptions"
+                    )
+                    selected_question_name = gr.Dropdown(
+                        label="Select Question", 
+                        value="Q1",
+                        choices=[
+                            "Q1",
+                            "Q2"
+                        ],
+                        interactive=True,
+                    )
+
+                    test_word = gr.Markdown(
+                        """\
+                        ### Q1
+                        
+                        print("Hello World")
+                        """, 
+                        visible=True,
+                    )
+                with gr.Column():
+                    chatbot = gr.Chatbot()
+                    msg = gr.Textbox()
+                    clear = gr.ClearButton([msg, chatbot])
+                    msg.submit(respond, [msg, chatbot], [msg, chatbot])
 
             txt = gr.Textbox(
                 label="Paste Your code here", 
@@ -58,8 +86,24 @@ def build_eejudge(
             )
 
             btn = gr.Button(value="Submit")
-            btn.click(get_code, inputs=[txt], outputs=[txt_3])
+            btn.click(get_code, inputs=[txt], outputs=[txt_3])            
 
+        with gr.Tab("Submitted History"):
+            gr.Markdown(
+                "We will record the submitted history in the future..."
+            )
+
+        with gr.Tab("Judge Mechanism"):
+            gr.Markdown(
+                "We will record the judge mechanism in the future..."
+            )
+
+        selected_question_name.change(
+            fn=test,
+            inputs=selected_question_name,
+            outputs=test_word,
+        )
+            
     demo.launch(
         # enable_queue=True,
         # share=True, 
