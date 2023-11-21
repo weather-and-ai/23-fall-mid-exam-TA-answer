@@ -1,3 +1,24 @@
+# -*- coding: utf-8 -*-
+"""
+Date: 2023/11/21
+Author: @1chooo(Hugo ChunHo Lin)
+E-mail: hugo970217@gmail.com
+Course: AP4063
+Midterm: Question 2
+Version: v0.1.0
+"""
+
+import sys
+from os.path import join
+from os.path import dirname
+from os.path import abspath
+
+project_root = join(
+    dirname(abspath(__file__)),
+    '..', 
+)
+sys.path.append(project_root)
+
 import unittest
 from q02_solved import decode
 

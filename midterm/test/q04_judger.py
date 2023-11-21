@@ -8,6 +8,17 @@ Midterm: Question 4
 Version: v0.1.0
 """
 
+import sys
+from os.path import join
+from os.path import dirname
+from os.path import abspath
+
+project_root = join(
+    dirname(abspath(__file__)),
+    '..', 
+)
+sys.path.append(project_root)
+
 import unittest
 from q04_solved import multiply
 
