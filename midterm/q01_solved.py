@@ -30,7 +30,7 @@ def four_piles(n, y):
     
     return piles
 
-print(four_piles(48,3))  #return [12,6,27,3]
-print(four_piles(100,4)) #return [20,12,64,4]
-print(four_piles(25,4))  #return []
-print(four_piles(24,4))  #return []
+four_piles(48, 3)  #return [12, 6, 27, 3]
+four_piles(100, 4) #return [20, 12, 64, 4]
+four_piles(25, 4)  #return []
+four_piles(24, 4)  #return []
