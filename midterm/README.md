@@ -135,3 +135,36 @@ def distances_from_average(test_list):
 
     return differences
 ```
+
+## Q4. Multiply the number (10%)
+Jack really likes his number five: the trick here is that you have to multiply each number by 5 raised to the number of digits of each numbers, so, for example:
+
+```
+multiply(3)==15 # 3 * 5¹
+multiply(10)==250 # 10 * 5²
+multiply(200)==25000 # 200 * 5³
+multiply(0)==0 # 0 * 5¹
+multiply(-3)==-15 # -3 * 5¹
+```
+
+### Solution
+
+```py
+def multiply(n):
+    if n == 0:  # If the number is 0, the result will be 0 regardless of its digit count
+        return 0
+
+    # Calculate the power of 5 raised to the number of digits in the absolute value of the input number
+    power = abs(n)
+    power_of_five = 5 ** len(str(power))
+
+    # Multiply the number by the calculated power of 5 and return the result with the sign of the input number
+    result = n * power_of_five
+    return result
+
+print(multiply(10))  #250
+print(multiply(5))   #25
+print(multiply(200)) #25000
+print(multiply(0))   #0
+print(multiply(-2))  #-10
+```

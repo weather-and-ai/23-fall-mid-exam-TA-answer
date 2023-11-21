@@ -8,7 +8,6 @@ Midterm: Question 3
 Version: v0.1.0
 """
 
-
 def distances_from_average(test_list):
     # Calculate the average
     average = sum(test_list) / len(test_list)
