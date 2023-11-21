@@ -1,5 +1,13 @@
 # AP4063 Midterm TA Solution
 
+> AP4063 - Weather and Artificial Intelligence Ⅰ **Midterm** </br>
+>
+> **Year: 2023 Fall**  
+> **Lecturer: Che-Wei Chou (周哲維)**  
+> **TA: Hugo ChunHo Lin (林群賀)**
+>    
+> </aside>
+
 ## Q1. Four piles of apples (10%)
 
 There are n apples that need to be divided into four piles. We need two mysterious number x and y. Let The number of first pile equals to x+y, the number of second pile equals to x-y, the number of third pile equals to x*y, the number of fourth pile equals to x/y. We need to calculate how many apples are there in each pile.
@@ -234,9 +242,9 @@ x_month = [*range(1, 13, 1)]
 
 fig, ax1 = plt.subplots(figsize=(8, 6))
 
-ax1.plot(x_month, month_max_temp.values, "r-o")
-ax1.plot(x_month, month_avg_temp.values, "k-o")
-ax1.plot(x_month, month_min_temp.values, "g-o")
+ax1.plot(x_month, month_max_temp.values, "-o")
+ax1.plot(x_month, month_avg_temp.values, "-o")
+ax1.plot(x_month, month_min_temp.values, "-o")
 
 ax1.set_ylabel("Temperature (°C)")
 
@@ -247,8 +255,13 @@ ax2.bar(x_month, month_total_prep.values, alpha=0.5)
 ax2.set_ylabel("Precipitation (mm)")
 
 ax1.legend(
-    ["max temp", "avg temp", "min temp"], loc ="upper left")
-ax2.legend(["total prepicitation"], loc="upper right")
+    ["max temp", "avg temp", "min temp"], 
+    loc ="upper left",
+)
+ax2.legend(
+    ["total prepicitation"], 
+    loc="upper right",
+)
 
 plt.xlim(0, 13)
 plt.grid()

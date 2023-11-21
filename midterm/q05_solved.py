@@ -42,16 +42,15 @@ year_min_temp_time = df_2017[df_2017['PP01'] == year_min_temp]['yyyymmddhh'].ilo
 month_max_temp = df_2017.groupby('month')['TX01'].max()
 month_min_temp = df_2017.groupby('month')['TX01'].min()
 
-
 import matplotlib.pyplot as plt
 
 x_month = [*range(1, 13, 1)]
 
 fig, ax1 = plt.subplots(figsize=(8, 6))
 
-ax1.plot(x_month, month_max_temp.values, "r-o")
-ax1.plot(x_month, month_avg_temp.values, "k-o")
-ax1.plot(x_month, month_min_temp.values, "g-o")
+ax1.plot(x_month, month_max_temp.values, "-o")
+ax1.plot(x_month, month_avg_temp.values, "-o")
+ax1.plot(x_month, month_min_temp.values, "-o")
 
 ax1.set_ylabel("Temperature (°C)")
 
@@ -62,8 +61,13 @@ ax2.bar(x_month, month_total_prep.values, alpha=0.5)
 ax2.set_ylabel("Precipitation (mm)")
 
 ax1.legend(
-    ["max temp", "avg temp", "min temp"], loc ="upper left")
-ax2.legend(["total prepicitation"], loc="upper right")
+    ["max temp", "avg temp", "min temp"], 
+    loc ="upper left",
+)
+ax2.legend(
+    ["total prepicitation"], 
+    loc="upper right",
+)
 
 plt.xlim(0, 13)
 plt.grid()
