@@ -10,7 +10,7 @@ Version: v0.1.0
 
 import pandas as pd
 
-file_path = "./466920.csv"
+file_path = "./data/466920.csv"
 df = pd.read_csv(file_path)
 """
 -9991 儀器故障待修無資料,
