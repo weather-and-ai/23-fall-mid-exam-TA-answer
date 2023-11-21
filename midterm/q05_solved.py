@@ -42,7 +42,12 @@ year_min_temp_time = df_2017[df_2017['PP01'] == year_min_temp]['yyyymmddhh'].ilo
 month_max_temp = df_2017.groupby('month')['TX01'].max()
 month_min_temp = df_2017.groupby('month')['TX01'].min()
 
+import os
 import matplotlib.pyplot as plt
+
+# Check if 'imgs' directory exists, if not, create it
+if not os.path.exists("./imgs"):
+    os.makedirs("./imgs")
 
 x_month = [*range(1, 13, 1)]
 
@@ -75,5 +80,5 @@ ax1.set_xticks(x_month)
 ax1.set_xlabel("Month")
 plt.title("Total precipitation and Temperature diversity in 2017 by TA")
 
-plt.savefig("./q05_plot.jpg", dpi=300)
+plt.savefig("./imgs/q05_plot.jpg", dpi=300)
 plt.show()
