@@ -79,13 +79,10 @@ For example: "a" is encoded with "z", "b" with "y", "c" with "x", etc
 
 You read the first sentence:
 
-
-
 ```
 "r slkv mlylwb wvxlwvh gsrh nvhhztv"
 ```
 After a few minutes you manage to decode it:
-
 
 ```
 "i hope nobody decodes this message"
@@ -93,10 +90,6 @@ After a few minutes you manage to decode it:
 Create a function that will instantly decode any of these messages
 
 You can assume no punctuation or capitals, only lower case letters, but remember spaces!
-
-
-
-
 
 ### Solution
 
@@ -169,12 +162,6 @@ def multiply(n):
     # Multiply the number by the calculated power of 5 and return the result with the sign of the input number
     result = n * power_of_five
     return result
-
-print(multiply(10))  #250
-print(multiply(5))   #25
-print(multiply(200)) #25000
-print(multiply(0))   #0
-print(multiply(-2))  #-10
 ```
 
 ## Q5. **466920.csv** 為臺北測站 2017 / 01 / 01 ~ 2018 / 11 / 30 之觀測資料，**information.txt** 為欄位說明，將 csv 利用 pandas 讀成 DataFrame 後(5%)完成以下小題。
