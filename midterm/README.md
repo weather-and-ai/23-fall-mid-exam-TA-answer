@@ -10,7 +10,7 @@
 
 ## Q1. Four piles of apples (10%)
 
-There are n apples that need to be divided into four piles. We need two mysterious number x and y. Let The number of first pile equals to x+y, the number of second pile equals to x-y, the number of third pile equals to x*y, the number of fourth pile equals to x/y. We need to calculate how many apples are there in each pile.
+There are n apples that need to be divided into four piles. We need two mysterious number x and y. Let The number of first pile equals to `x+y`, the number of second pile equals to `x-y`, the number of third pile equals to `x*y`, the number of fourth pile equals to `x/y`. We need to calculate how many apples are there in each pile.
 
 Of course, there won't be so many unknowns. We know the total number of apples(n) and the second mysterious number(y).
 
@@ -117,7 +117,7 @@ If for example during a week of work you have collected 55,95,62,36,48 contacts 
 
 For example on the first day you did something less than the said average (55, meaning -4.2 compared to the average), much more in the second day (95, 35.8 more than the average and so on).
 
-The resulting list/array of differences starting from [55, 95, 62, 36, 48] is thus [4.2, -35.8, -2.8, 23.2, 11.2].
+The resulting list/array of differences starting from `[55, 95, 62, 36, 48]` is thus `[4.2, -35.8, -2.8, 23.2, 11.2]`.
 
 Assuming you will only get valid inputs (ie: only arrays/lists with numbers), create a function to do that, rounding each difference to the second decimal digit.
 
@@ -164,10 +164,11 @@ def multiply(n):
     return result
 ```
 
-## Q5. **466920.csv** 為臺北測站 2017 / 01 / 01 ~ 2018 / 11 / 30 之觀測資料，**information.txt** 為欄位說明，將 csv 利用 pandas 讀成 DataFrame 後(5%)完成以下小題。
+## Q5. **`466920.csv`** 為臺北測站 2017 / 01 / 01 ~ 2018 / 11 / 30 之觀測資料，**`information.txt`** 為欄位說明，將 `csv` 利用 `pandas` 讀成 `DataFrame` 後(5%)完成以下小題。
 
 ```py
 import pandas as pd
+import numpy as np
 
 file_path = "./data/466920.csv"
 df = pd.read_csv(file_path)
@@ -179,11 +180,8 @@ df = pd.read_csv(file_path)
 -9999 未觀測而無資料
 """
 
-df = df.replace(-9991, 0)
-df = df.replace(-9996, 0)
-df = df.replace(-9997, 0)
-df = df.replace(-9998, 0)
-df = df.replace(-9999, 0)
+values_to_replace = [-9991, -9996, -9997, -9998, -9999]
+df = df.replace(values_to_replace, np.nan)
 
 df_2017 = df[df['year'] == 2017]
 ```

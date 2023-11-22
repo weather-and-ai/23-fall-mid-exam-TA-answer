@@ -9,6 +9,7 @@ Version: v0.1.0
 """
 
 import pandas as pd
+import numpy as np
 
 file_path = "./data/466920.csv"
 df = pd.read_csv(file_path)
@@ -20,11 +21,8 @@ df = pd.read_csv(file_path)
 -9999 未觀測而無資料
 """
 
-df = df.replace(-9991, 0)
-df = df.replace(-9996, 0)
-df = df.replace(-9997, 0)
-df = df.replace(-9998, 0)
-df = df.replace(-9999, 0)
+values_to_replace = [-9991, -9996, -9997, -9998, -9999]
+df = df.replace(values_to_replace, np.nan)
 
 df_2017 = df[df['year'] == 2017]
 
