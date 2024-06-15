@@ -15,8 +15,9 @@ def distances_from_average(test_list):
     # Calculate the signed distances from the average, rounded to 2 decimal places
     differences = [round(average - value, 2) for value in test_list]
 
-    # Convert floating point number 0.0 to integer 0
-    differences = [0 if diff == 0.0 else diff for diff in differences]
+    # Convert floating point number approximately equal to 0.0 to integer 0 using a tolerance
+    tolerance = 1e-9  # Small tolerance for floating-point comparison
+    differences = [0 if abs(diff) < tolerance else diff for diff in differences]
 
     return differences
 
